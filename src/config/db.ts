@@ -1,12 +1,13 @@
 import mongoose from "mongoose";
+import { errorLogger, logger } from "../share/logger";
 
 export const connectDB = async () => {
   try {
     await mongoose.connect(process.env.DATABASE_URL as string);
 
-    console.log("MongoDB Connected");
+    logger.info("MongoDB Connected");
   } catch (error) {
-    console.error(error);
+    errorLogger.error(error);
     process.exit(1);
   }
 };

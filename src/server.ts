@@ -8,8 +8,13 @@ import { Server } from "http";
 
 const PORT = process.env.PORT || 5000;
 
+process.on("uncaughtException", (err) => {
+  errorLogger.error(" Uncaught Exception:", err);
+  process.exit(1);
+});
+
+let server: Server;
 const startServer = async () => {
-  let server: Server;
   try {
     await connectDB();
     server = app.listen(PORT, () => {
@@ -18,16 +23,21 @@ const startServer = async () => {
   } catch (error) {
     errorLogger.error("Failed to start server: ", error);
   }
-  process.on("uncaughtException", (error) => {
-    if (server) {
-      server.close(() => {
-        errorLogger.error("Uncaught Exception :", error);
-        process.exit(1);
-      });
-    } else {
+
+  process.on("unhandledRejection", (reason, promise) => {
+    errorLogger.error("Unhandled Rejection:", reason);
+
+    server.close(() => {
       process.exit(1);
-    }
+    });
   });
 };
 
 startServer();
+
+process.on("SIGTERM", () => {
+  logger.info("SIGTERM is received");
+  if (server) {
+    server.close();
+  }
+});

@@ -1,0 +1,50 @@
+{
+  message: 'MongoDB Connected',
+  level: 'info',
+  timestamp: '2026-07-05T17:06:18.879Z'
+}
+{
+  message: 'Server running on port 3000',
+  level: 'info',
+  timestamp: '2026-07-05T17:06:18.893Z'
+}
+{
+  message: 'MongoDB Connected',
+  level: 'info',
+  timestamp: '2026-07-05T17:07:14.157Z'
+}
+{
+  message: 'Server running on port 3000',
+  level: 'info',
+  timestamp: '2026-07-05T17:07:14.174Z'
+}
+{
+  message: 'MongoDB Connected',
+  level: 'info',
+  timestamp: '2026-07-05T17:08:49.196Z'
+}
+{
+  message: 'Server running on port 3000',
+  level: 'info',
+  timestamp: '2026-07-05T17:08:49.206Z'
+}
+{
+  message: 'MongoDB Connected',
+  level: 'info',
+  timestamp: '2026-07-05T17:08:55.177Z'
+}
+{
+  message: 'Server running on port 3000',
+  level: 'info',
+  timestamp: '2026-07-05T17:08:55.183Z'
+}
+{
+  message: 'MongoDB Connected',
+  level: 'info',
+  timestamp: '2026-07-05T17:10:13.303Z'
+}
+{
+  message: 'Server running on port 3000',
+  level: 'info',
+  timestamp: '2026-07-05T17:10:13.329Z'
+}

@@ -22,7 +22,8 @@
     "mongoose": "^9.7.3",
     "ts-node-dev": "^2.0.0",
     "winston": "^3.19.0",
-    "winston-daily-rotate-file": "^5.0.0"
+    "winston-daily-rotate-file": "^5.0.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

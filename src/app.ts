@@ -14,7 +14,7 @@ app.use("/api/v1/users", userRouter);
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req: Request, res: Response) => {
-  Promise.reject(new Error("Database connection failed"));
+  throw new Error("Unexpected error");
 });
 
 // Global Error Handler

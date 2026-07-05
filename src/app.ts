@@ -1,16 +1,23 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import userRouter from "./app/modules/users/user.route";
+import globalErrorHandler from "./app/middleware/globalErrorHandler";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// app/errors/AppError.ts
+
 app.use("/api/v1/users", userRouter);
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", async (req: Request, res: Response) => {
-  res.send("API is running...");
+  Promise.reject(new Error("Database connection failed"));
 });
+
+// Global Error Handler
+app.use(globalErrorHandler);
 
 export default app;

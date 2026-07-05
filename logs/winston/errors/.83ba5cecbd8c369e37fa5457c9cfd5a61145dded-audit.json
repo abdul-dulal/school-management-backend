@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "G:\\node js\\restapi\\logs\\winston\\errors\\.83ba5cecbd8c369e37fa5457c9cfd5a61145dded-audit.json",
+    "files": [
+        {
+            "date": 1783232850616,
+            "name": "G:\\node js\\restapi\\logs\\winston\\errors\\ph-2026-05-07-12error.log",
+            "hash": "20fe2dc39528a8d055bec342e679cc99b5b662575f3b8be5f8d718b41c8c9d1e"
+        },
+        {
+            "date": 1783241132880,
+            "name": "G:\\node js\\restapi\\logs\\winston\\errors\\ph-2026-05-07-14error.log",
+            "hash": "ce8e0a5635f1030fdf2afab676dcf83230b9d823007e50d4760149eae1564fdd"
+        }
+    ],
+    "hashType": "sha256"
+}

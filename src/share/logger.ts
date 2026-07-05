@@ -9,12 +9,12 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 
 export const logger = createLogger({
   level: "info",
-  format: combine(label({ label: "right meow!" }), timestamp(), myFormat, prettyPrint()),
+  format: combine(timestamp(), myFormat, prettyPrint()),
 
   transports: [
     new transports.Console(),
     new DailyRotateFile({
-      filename: path.join(process.cwd(), "logs", "winston", "ph-%DATE%success.log"),
+      filename: path.join(process.cwd(), "logs", "winston", "success", "ph-%DATE%success.log"),
       datePattern: "YYYY-DD-MM-HH",
       zippedArchive: true,
       maxSize: "20m",
@@ -24,11 +24,11 @@ export const logger = createLogger({
 });
 export const errorLogger = createLogger({
   level: "error",
-  format: combine(label({ label: "right meow!" }), timestamp(), myFormat, prettyPrint()),
+  format: combine(timestamp(), myFormat, prettyPrint()),
   transports: [
     new transports.Console(),
     new DailyRotateFile({
-      filename: path.join(process.cwd(), "logs", "winston", "ph-%DATE%error.log"),
+      filename: path.join(process.cwd(), "logs", "winston", "errors", "ph-%DATE%error.log"),
       datePattern: "YYYY-DD-MM-HH",
       zippedArchive: true,
       maxSize: "20m",

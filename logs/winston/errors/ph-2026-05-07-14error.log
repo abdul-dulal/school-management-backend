@@ -1,0 +1,33 @@
+{
+  level: 'error',
+  message: 'Uncaught Exception : Database connection failed',
+  stack: 'Error: Database connection failed\n' +
+    '    at G:\\node js\\restapi\\src\\app.ts:17:18\n' +
+    '    at Layer.handleRequest (G:\\node js\\restapi\\node_modules\\router\\lib\\layer.js:152:17)\n' +
+    '    at next (G:\\node js\\restapi\\node_modules\\router\\lib\\route.js:157:13)\n' +
+    '    at Route.dispatch (G:\\node js\\restapi\\node_modules\\router\\lib\\route.js:117:3)\n' +
+    '    at handle (G:\\node js\\restapi\\node_modules\\router\\index.js:435:11)\n' +
+    '    at Layer.handleRequest (G:\\node js\\restapi\\node_modules\\router\\lib\\layer.js:152:17)\n' +
+    '    at G:\\node js\\restapi\\node_modules\\router\\index.js:295:15\n' +
+    '    at processParams (G:\\node js\\restapi\\node_modules\\router\\index.js:582:12)\n' +
+    '    at next (G:\\node js\\restapi\\node_modules\\router\\index.js:291:5)\n' +
+    '    at read (G:\\node js\\restapi\\node_modules\\body-parser\\lib\\read.js:53:5)',
+  label: 'right meow!',
+  timestamp: '2026-07-05T08:47:28.528Z'
+}
+{
+  level: 'error',
+  message: 'Uncaught Exception : Database connection failed',
+  stack: 'Error: Database connection failed\n' +
+    '    at G:\\node js\\restapi\\src\\app.ts:17:18\n' +
+    '    at Layer.handleRequest (G:\\node js\\restapi\\node_modules\\router\\lib\\layer.js:152:17)\n' +
+    '    at next (G:\\node js\\restapi\\node_modules\\router\\lib\\route.js:157:13)\n' +
+    '    at Route.dispatch (G:\\node js\\restapi\\node_modules\\router\\lib\\route.js:117:3)\n' +
+    '    at handle (G:\\node js\\restapi\\node_modules\\router\\index.js:435:11)\n' +
+    '    at Layer.handleRequest (G:\\node js\\restapi\\node_modules\\router\\lib\\layer.js:152:17)\n' +
+    '    at G:\\node js\\restapi\\node_modules\\router\\index.js:295:15\n' +
+    '    at processParams (G:\\node js\\restapi\\node_modules\\router\\index.js:582:12)\n' +
+    '    at next (G:\\node js\\restapi\\node_modules\\router\\index.js:291:5)\n' +
+    '    at read (G:\\node js\\restapi\\node_modules\\body-parser\\lib\\read.js:53:5)',
+  timestamp: '2026-07-05T08:55:43.200Z'
+}

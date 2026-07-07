@@ -1,20 +1,20 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 import userRouter from "./app/modules/users/user.route";
+import AcademicSemesterRouter from "./app/modules/academicSemester/academicSemester.route";
 import globalErrorHandler from "./app/middleware/globalErrorHandler";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-
-// app/errors/AppError.ts
-
-app.use("/api/v1/users", userRouter);
 app.use(express.urlencoded({ extended: true }));
 
+app.use("/api/v1/users", userRouter);
+app.use("/api/v1/academic-semesters", AcademicSemesterRouter);
+
 app.get("/", async (req: Request, res: Response) => {
-  throw new Error("Unexpected error");
+  res.send("Hello world");
 });
 
 // Global Error Handler

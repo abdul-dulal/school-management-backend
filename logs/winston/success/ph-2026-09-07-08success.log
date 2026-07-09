@@ -1,0 +1,20 @@
+{
+  message: 'MongoDB Connected',
+  level: 'info',
+  timestamp: '2026-07-09T02:52:29.007Z'
+}
+{
+  message: 'Server running on port 3000',
+  level: 'info',
+  timestamp: '2026-07-09T02:52:29.036Z'
+}
+{
+  message: 'MongoDB Connected',
+  level: 'info',
+  timestamp: '2026-07-09T02:53:26.493Z'
+}
+{
+  message: 'Server running on port 3000',
+  level: 'info',
+  timestamp: '2026-07-09T02:53:26.531Z'
+}

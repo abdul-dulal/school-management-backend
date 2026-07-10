@@ -1,11 +1,17 @@
 import { NextFunction, Request, Response } from "express";
-import { createSemester, getAllsemesters } from "./academicSemester.service";
+import {
+  createSemester,
+  getAllsemesters,
+  getSingleSemester,
+  updateSemester,
+} from "./academicSemester.service";
 import catchAsync from "../../../share/catchAsync";
 import sendResponse from "../../../share/sendResponse";
 import httpStatus from "http-status";
 import { IAcademicSemester } from "./academicSemester.interface";
 import pick from "../../../share/pick";
 import { paginationFields } from "../../../constants/pagination";
+import { academicSemesterFilterableFields } from "./academicSemester.constant";
 
 export const createAcademicSemester = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -23,6 +29,7 @@ export const createAcademicSemester = catchAsync(
 
 export const getAllSemesters = catchAsync(async (req: Request, res: Response) => {
   const filters = pick(req.query, academicSemesterFilterableFields);
+
   const paginationOptions = pick(req.query, paginationFields);
 
   const result = await getAllsemesters(filters, paginationOptions);
@@ -33,5 +40,24 @@ export const getAllSemesters = catchAsync(async (req: Request, res: Response) =>
     message: "Academic Semesters retrieved successfully !",
     meta: result.meta,
     data: result.data,
+  });
+});
+
+export const getSingleSemesterController = catchAsync(async (req: Request, res: Response) => {
+  const result = await getSingleSemester(req.params.id as string);
+  sendResponse<IAcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Academic Semester retrieved successfully!",
+    data: result,
+  });
+});
+export const semesterUpdateController = catchAsync(async (req: Request, res: Response) => {
+  const result = await updateSemester(req.params.id as string, req.body);
+  sendResponse<IAcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Academic Semester updated successfully!",
+    data: result,
   });
 });

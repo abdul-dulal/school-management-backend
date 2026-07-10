@@ -2,8 +2,11 @@ import { SortOrder } from "mongoose";
 import ApiError from "../../../errors/AppError";
 import { paginationHelpers } from "../../../helpers/paginationHelper";
 import { IPaginationOptions } from "../../interface/pagination";
-import { IGenericErrorPresponse, IGenericResponse } from "../commonInterface/Common";
-import { academicSemesterTitleCodeMapper } from "./academicSemester.constant";
+import { IGenericResponse } from "../commonInterface/Common";
+import {
+  academicSemesterSearchableFields,
+  academicSemesterTitleCodeMapper,
+} from "./academicSemester.constant";
 import { IAcademicSemester, IAcademicSemesterFilters } from "./academicSemester.interface";
 import { AcademicSemester } from "./academicSemester.model";
 import httpStatus from "http-status";
@@ -16,16 +19,18 @@ export const createSemester = async (payload: IAcademicSemester): Promise<IAcade
   return result;
 };
 
-const getAllsemesters = async (
+export const getAllsemesters = async (
   filters: IAcademicSemesterFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
   // Extract searchTerm to implement search query
   const { searchTerm, ...filtersData } = filters;
+
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
 
   const andConditions = [];
+
   // Search needs $or for searching in specified fields
   if (searchTerm) {
     andConditions.push({
@@ -68,4 +73,20 @@ const getAllsemesters = async (
     },
     data: result,
   };
+};
+
+export const getSingleSemester = async (id: string | null) => {
+  const result = await AcademicSemester.findById(id);
+  return result;
+};
+export const updateSemester = async (id: string | null, payload: Partial<IAcademicSemester>) => {
+  if (
+    payload.title &&
+    payload.code &&
+    academicSemesterTitleCodeMapper[payload.title] !== payload.code
+  ) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "Invalid Semester Code");
+  }
+  const result = await AcademicSemester.findByIdAndUpdate(id, payload, { new: true });
+  return result;
 };

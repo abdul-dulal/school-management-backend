@@ -14,5 +14,4 @@ export const createdUser = catchAsync(async (req: Request, res: Response, next: 
     message: "Create user successfully!",
     data: user,
   });
-  next();
 });

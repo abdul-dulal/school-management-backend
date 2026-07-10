@@ -12,11 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1", routers);
-// app.use("/api/v1/academic-semesters", AcademicSemesterRouter);
-
-app.get("/api/v1", async (req: Request, res: Response) => {
-  res.send("Hello world");
-});
 
 // Global Error Handler
 app.use(globalErrorHandler);

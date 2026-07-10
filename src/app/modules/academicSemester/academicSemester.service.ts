@@ -90,3 +90,7 @@ export const updateSemester = async (id: string | null, payload: Partial<IAcadem
   const result = await AcademicSemester.findByIdAndUpdate(id, payload, { new: true });
   return result;
 };
+export const deleteSemester = async (id: string | null) => {
+  const result = await AcademicSemester.findByIdAndDelete(id);
+  return result;
+};

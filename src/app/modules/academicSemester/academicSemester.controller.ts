@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import {
   createSemester,
+  deleteSemester,
   getAllsemesters,
   getSingleSemester,
   updateSemester,
@@ -58,6 +59,16 @@ export const semesterUpdateController = catchAsync(async (req: Request, res: Res
     statusCode: httpStatus.OK,
     success: true,
     message: "Academic Semester updated successfully!",
+    data: result,
+  });
+});
+
+export const semesterDeleteController = catchAsync(async (req: Request, res: Response) => {
+  const result = await deleteSemester(req.params.id as string);
+  sendResponse<IAcademicSemester>(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: "Academic Semester deleted successfully!",
     data: result,
   });
 });

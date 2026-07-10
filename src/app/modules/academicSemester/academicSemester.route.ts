@@ -11,6 +11,7 @@ import {
   createAcademicSemester,
   getAllSemesters,
   getSingleSemesterController,
+  semesterDeleteController,
   semesterUpdateController,
 } from "./academicSemester.controller";
 const router = express.Router();
@@ -27,6 +28,7 @@ router.patch(
   validateRequest(updateAcademicSemesterZodSchema as unknown as AnyZodObject),
   semesterUpdateController
 );
+router.delete("/:id", semesterDeleteController);
 router.get("/:id", getSingleSemesterController);
 
 export default router;

@@ -1,14 +1,49 @@
 import express from "express";
-import { createAcademicFacultyZodSchema } from "./academicFaculty.validation";
 
-import { AnyZodObject } from "zod/v3";
+import { AcademicFacultyController } from "./academicFaculty.controller";
 import { validateRequest } from "../../middleware/validateRequest";
-import { createFacultyController } from "./academicFaculty.controller";
+import { AcademicFacultyValidation } from "./academicFaculty.validation";
+
 const router = express.Router();
+
 router.post(
   "/create-faculty",
-  validateRequest(createAcademicFacultyZodSchema as unknown as AnyZodObject),
-  createFacultyController
+  validateRequest(AcademicFacultyValidation.createFacultyZodSchema),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  AcademicFacultyController.createFaculty
 );
 
-export default router;
+router.get(
+  "/:id",
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN, ENUM_USER_ROLE.FACULTY),
+  AcademicFacultyController.getSingleFaculty
+);
+
+router.get(
+  "/",
+  // auth(
+  //   ENUM_USER_ROLE.SUPER_ADMIN,
+  //   ENUM_USER_ROLE.ADMIN,
+  //   ENUM_USER_ROLE.FACULTY
+  // ),
+  AcademicFacultyController.getAllFaculties
+);
+
+router.patch(
+  "/:id",
+  validateRequest(AcademicFacultyValidation.updatefacultyZodSchema),
+  // auth(
+  //   ENUM_USER_ROLE.SUPER_ADMIN,
+  //   ENUM_USER_ROLE.ADMIN,
+  //   ENUM_USER_ROLE.FACULTY
+  // ),
+  AcademicFacultyController.updateFaculty
+);
+
+router.delete(
+  "/:id",
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN),
+  AcademicFacultyController.deleteFaculty
+);
+
+export const AcademicFacultyRoutes = router;

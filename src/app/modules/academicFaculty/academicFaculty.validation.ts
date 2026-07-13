@@ -1,9 +1,22 @@
-import z from "zod";
+import { z } from "zod";
 
-export const createAcademicFacultyZodSchema = z.object({
+const createFacultyZodSchema = z.object({
   body: z.object({
     title: z.string({
       error: "Title is required",
     }),
   }),
 });
+
+const updatefacultyZodSchema = z.object({
+  body: z.object({
+    title: z.string({
+      error: "Title is required",
+    }),
+  }),
+});
+
+export const AcademicFacultyValidation = {
+  createFacultyZodSchema,
+  updatefacultyZodSchema,
+};

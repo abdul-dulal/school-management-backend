@@ -1,15 +1,30 @@
 import express from "express";
-import { createdUser } from "./user.controller";
-import { validateRequest } from "../../middleware/validateRequest";
-import { createStudentZodSchema } from "./user.validation";
+// import { ENUM_USER_ROLE } from "../../../enums/user";
 
-import { AnyZodObject } from "zod/v3";
+import { UserValidation } from "./user.validation";
+import { validateRequest } from "../../middleware/validateRequest";
+import { UserController } from "./user.controller";
 const router = express.Router();
 
 router.post(
-  "/create-user",
-  validateRequest(createStudentZodSchema as unknown as AnyZodObject),
-  createdUser
+  "/create-student",
+  validateRequest(UserValidation.createStudentZodSchema),
+  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+  UserController.createStudent
 );
 
-export default router;
+// router.post(
+//   "/create-faculty",
+//   validateRequest(UserValidation.createFacultyZodSchema),
+//   // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+//   UserController.createFaculy
+// );
+
+// router.post(
+//   "/create-admin",
+//   validateRequest(UserValidation.createAdminZodSchema),
+//   // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+//   UserController.createAdmin
+// );
+
+export const UserRoutes = router;

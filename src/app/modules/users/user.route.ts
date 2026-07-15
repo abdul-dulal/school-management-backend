@@ -6,12 +6,15 @@ import { validateRequest } from "../../middleware/validateRequest";
 import { UserController } from "./user.controller";
 const router = express.Router();
 
-router.post(
-  "/create-student",
-  validateRequest(UserValidation.createStudentZodSchema),
-  // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
-  UserController.createStudent
-);
+router.post("/create-student", (req, res) => {
+  console.log(req.body);
+});
+// router.post(
+//   "/create-student",
+//   validateRequest(UserValidation.createStudentZodSchema),
+//   // auth(ENUM_USER_ROLE.SUPER_ADMIN, ENUM_USER_ROLE.ADMIN),
+//   UserController.createStudent
+// );
 
 // router.post(
 //   "/create-faculty",

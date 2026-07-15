@@ -1,4 +1,4 @@
-import { ErrorRequestHandler, Request, Response } from "express";
+import { ErrorRequestHandler, NextFunction, Request, Response } from "express";
 
 import { ZodError } from "zod";
 import { handleValidationError } from "../../errors/handleValidationError";
@@ -8,7 +8,12 @@ import { IGenericMessage } from "../modules/commonInterface/IGenericMessage";
 import handleZodError from "../../errors/handleZodError";
 import handleCastError from "../../errors/handleCastError";
 
-const globalErrorHandler: ErrorRequestHandler = (error, req: Request, res: Response) => {
+const globalErrorHandler: ErrorRequestHandler = (
+  error,
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   process.env.NODE_ENV === "development"
     ? console.log(`🐱‍🏍 globalErrorHandler ~~`, { error })
     : errorLogger.error(`🐱‍🏍 globalErrorHandler ~~`, error);

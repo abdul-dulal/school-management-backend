@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { IUser } from "./user.interface";
 import { UserModel } from "./user.models";
+import bcrypt from "bcrypt";
 
 import ApiError from "../../../errors/AppError";
 import httpStatus from "http-status";
@@ -16,6 +17,10 @@ const createStudent = async (student: IStudent, user: IUser): Promise<IUser | nu
   if (!user.password) {
     user.password = process.env.DEFAULT_STUDENT_PASSWORD as string;
   }
+
+  // hash password
+  user.password = await bcrypt.hash(user.password, Number(process.env.BCRYPT_SOLD_ROUND));
+
   // set role
   user.role = "student";
 

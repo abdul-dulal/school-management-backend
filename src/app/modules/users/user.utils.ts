@@ -1,9 +1,9 @@
 import { IAcademicSemester } from "../academicSemester/academicSemester.interface";
-import { UserModel } from "./user.models";
+import { User } from "./user.models";
 
 // Student ID
 export const findLastStudentId = async (): Promise<string | undefined> => {
-  const lastStudent = await UserModel.findOne(
+  const lastStudent = await User.findOne(
     {
       role: "student",
     },
@@ -29,7 +29,7 @@ export const generateStudentId = async (academicSemester: IAcademicSemester): Pr
 
 // Faculty ID
 export const findLastFacultyId = async (): Promise<string | undefined> => {
-  const lastFaculty = await UserModel.findOne({ role: "faculty" }, { id: 1, _id: 0 })
+  const lastFaculty = await User.findOne({ role: "faculty" }, { id: 1, _id: 0 })
     .sort({
       createdAt: -1,
     })
@@ -48,7 +48,7 @@ export const generateFacultyId = async (): Promise<string> => {
 
 // Admin ID
 export const findLastAdminId = async (): Promise<string | undefined> => {
-  const lastFaculty = await UserModel.findOne({ role: "admin" }, { id: 1, _id: 0 })
+  const lastFaculty = await User.findOne({ role: "admin" }, { id: 1, _id: 0 })
     .sort({
       createdAt: -1,
     })

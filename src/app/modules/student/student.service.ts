@@ -10,7 +10,7 @@ import { Student } from "./student.model";
 import { IPaginationOptions } from "../../interface/pagination";
 import { IGenericResponse } from "../commonInterface/Common";
 import ApiError from "../../../errors/AppError";
-import { UserModel } from "../users/user.models";
+import { User } from "../users/user.models";
 
 const getAllStudents = async (
   filters: IStudentFilters,
@@ -138,7 +138,7 @@ const deleteStudent = async (id: string): Promise<IStudent | null> => {
       throw new ApiError(404, "Failed to delete student");
     }
     //delete user
-    await UserModel.deleteOne({ id });
+    await User.deleteOne({ id });
     session.commitTransaction();
     session.endSession();
 

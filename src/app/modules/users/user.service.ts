@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import { IUser } from "./user.interface";
-import { UserModel } from "./user.models";
-import bcrypt from "bcrypt";
+import { User } from "./user.models";
 
 import ApiError from "../../../errors/AppError";
 import httpStatus from "http-status";
@@ -19,7 +18,6 @@ const createStudent = async (student: IStudent, user: IUser): Promise<IUser | nu
   }
 
   // hash password
-  user.password = await bcrypt.hash(user.password, Number(process.env.BCRYPT_SOLD_ROUND));
 
   // set role
   user.role = "student";
@@ -46,7 +44,7 @@ const createStudent = async (student: IStudent, user: IUser): Promise<IUser | nu
     // set student _id (reference) into user.student
     user.student = newStudent[0]._id;
 
-    const newUser = await UserModel.create([user]);
+    const newUser = await User.create([user]);
 
     if (!newUser.length) {
       throw new ApiError(httpStatus.BAD_REQUEST, "Failed to create user");
@@ -62,7 +60,7 @@ const createStudent = async (student: IStudent, user: IUser): Promise<IUser | nu
   }
 
   if (newUserAllData) {
-    newUserAllData = await UserModel.findOne({ id: newUserAllData.id }).populate({
+    newUserAllData = await User.findOne({ id: newUserAllData.id }).populate({
       path: "student",
       populate: [
         {

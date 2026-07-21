@@ -8,4 +8,9 @@ router.post(
   validateRequest(AuthValidation.loginZodSchema as any),
   AuthController.loginUser
 );
+router.post(
+  "/login",
+  validateRequest(AuthValidation.refreshTokenZodSchema as any),
+  AuthController.refreshToken
+);
 export const AuthRoutes = router;

@@ -10,6 +10,7 @@ import { UserService } from "./user.service";
 const createStudent: RequestHandler = catchAsync(async (req: Request, res: Response) => {
   const { student, ...userData } = req.body;
   const result = await UserService.createStudent(student, userData);
+  // console.log(req.cookies, "cookies");
 
   sendResponse<IUser>(res, {
     statusCode: httpStatus.OK,
